@@ -47,6 +47,7 @@ public class UserService {
         persistUsers();
     }
 
+<<<<<<< HEAD
     public static void checkUser(String username,String password) throws NoUserName,NoPassword,InvalidPassword,InvalidUsername{
         checkUserIsNotEmpty(username);
         checkPassIsNotEmpty(password);
@@ -72,6 +73,8 @@ public class UserService {
     }
 
 
+=======
+>>>>>>> master
     private static void checkUserDoesNotAlreadyExist(String username) throws UsernameAlreadyExists {
         for (User user : users) {
             if (Objects.equals(username, user.getUser()))
