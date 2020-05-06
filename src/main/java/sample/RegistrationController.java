@@ -1,9 +1,9 @@
-package Sample;
+package sample;
 
-import Exceptions.NoPassword;
-import Exceptions.NoUserName;
-import Exceptions.UsernameAlreadyExists;
-import Services.UserService;
+import exceptions.NoPassword;
+import exceptions.NoUserName;
+import exceptions.UsernameAlreadyExists;
+import services.UserService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

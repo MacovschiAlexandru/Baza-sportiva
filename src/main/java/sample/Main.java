@@ -1,6 +1,6 @@
-package Sample;
+package sample;
 
-import Services.UserService;
+import services.UserService;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

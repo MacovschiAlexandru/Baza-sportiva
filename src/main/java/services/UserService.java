@@ -1,15 +1,15 @@
-package Services;
+package services;
 
-import Exceptions.CouldNotWriteUsersException;
-import Exceptions.NoPassword;
-import Exceptions.NoUserName;
-import Exceptions.UsernameAlreadyExists;
-import Registration.User;
+import exceptions.CouldNotWriteUsersException;
+import exceptions.NoPassword;
+import exceptions.NoUserName;
+import exceptions.UsernameAlreadyExists;
+import registration.User;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.io.FileUtils;
-import Exceptions.InvalidUsername;
-import Exceptions.InvalidPassword;
+import exceptions.InvalidUsername;
+import exceptions.InvalidPassword;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;

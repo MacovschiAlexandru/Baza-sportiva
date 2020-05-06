@@ -1,4 +1,4 @@
-package Exceptions;
+package exceptions;
 
 public class NoPassword extends Exception{
     private String password;

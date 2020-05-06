@@ -1,10 +1,10 @@
-package Controllers;
+package controllers;
 
-import Exceptions.InvalidPassword;
-import Exceptions.InvalidUsername;
-import Exceptions.NoPassword;
-import Exceptions.NoUserName;
-import Services.UserService;
+import exceptions.InvalidPassword;
+import exceptions.InvalidUsername;
+import exceptions.NoPassword;
+import exceptions.NoUserName;
+import services.UserService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
