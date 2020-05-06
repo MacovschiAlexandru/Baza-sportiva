@@ -1,14 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="$CONTROLLER_NAME$"
-            prefHeight="400.0" prefWidth="600.0">
+<GridPane alignment="center" hgap="10" prefHeight="400" prefWidth="600" vgap="10" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CreateInstructorController">
+    <padding>
+        <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+    </padding>
+    <Text id="title-text" text="create an instructor" GridPane.columnIndex="1" GridPane.columnSpan="2" />
 
-</AnchorPane>
+    <Label text="Username:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+
+    <TextField fx:id="usernameField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+    <Label text="Password:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+
+    <PasswordField fx:id="passwordField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+    <Text fx:id="creationMessage" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+    <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="2" GridPane.rowIndex="5">
+        <Button onAction="#handleCreationButton" text="create" />
+        <Button onAction="#BackToAdminInterfaceFromCreation" text="back" />
+    </HBox>
+    <columnConstraints>
+        <ColumnConstraints />
+        <ColumnConstraints />
+        <ColumnConstraints />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints />
+        <RowConstraints />
+        <RowConstraints />
+        <RowConstraints />
+        <RowConstraints />
+        <RowConstraints />
+        <RowConstraints />
+        <RowConstraints />
+        <RowConstraints />
+    </rowConstraints>
+</GridPane>
