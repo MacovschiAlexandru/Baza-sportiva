@@ -1,6 +1,6 @@
-package Sample;
+package sample;
 
-import Services.UserService;
+import services.UserService;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -18,8 +18,8 @@ public class Main extends Application {
 
         UserService.loadUsersFromFile();
 
-        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("register.fxml"));
-        primaryStage.setTitle("Registration");
+        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("login.fxml"));
+        primaryStage.setTitle("Login");
         primaryStage.setScene(new Scene(root, 300, 275));
         primaryStage.show();
     }

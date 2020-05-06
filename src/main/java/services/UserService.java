@@ -1,13 +1,10 @@
-package Services;
+package services;
 
-import Exceptions.CouldNotWriteUsersException;
-import Exceptions.NoPassword;
-import Exceptions.NoUserName;
-import Exceptions.UsernameAlreadyExists;
-import Registration.User;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import exceptions.*;
 import org.apache.commons.io.FileUtils;
+import registration.User;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -43,6 +40,30 @@ public class UserService {
         checkPassIsNotEmpty(password);
         users.add(new User(username, encodePassword(username, password), "client"));
         persistUsers();
+    }
+
+    public static void checkUser(String username,String password) throws NoUserName,NoPassword,InvalidPassword,InvalidUsername{
+        checkUserIsNotEmpty(username);
+        checkPassIsNotEmpty(password);
+        checkUsername(username,password);
+    }
+
+    private static void checkUsername(String username, String password) throws InvalidPassword,InvalidUsername{
+        int ok=0;
+        for (User user : users) {
+            if (Objects.equals(username, user.getUser()))
+            {ok=1;
+
+            if(Objects.equals(encodePassword(username,password), user.getPassword()))
+                ok=2;
+            }
+        }
+        if(ok==0)
+            throw new InvalidUsername();
+        if(ok==1)
+            throw new InvalidPassword();
+
+
     }
 
     private static void checkUserDoesNotAlreadyExist(String username) throws UsernameAlreadyExists {
