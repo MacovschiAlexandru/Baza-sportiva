@@ -47,7 +47,24 @@ public class UserService {
         checkPassIsNotEmpty(password);
         checkUsername(username,password);
     }
-
+    public static void deleteInstructor(String username) throws InstructorNotFound {
+        for (User user : users) {
+            if (Objects.equals(username, user.getUser())) {
+                if (Objects.equals("Instructor", user.getRole())) {
+                  user = null;
+                    break;
+                }
+                throw new InstructorNotFound();
+            }
+        }
+    }
+    public static void addInstructor(String username, String password) throws UsernameAlreadyExists, NoPassword, NoUserName{
+        checkUserDoesNotAlreadyExist(username);
+        checkUserIsNotEmpty(username);
+        checkPassIsNotEmpty(password);
+        users.add(new User(username, encodePassword(username, password), "Instructor"));
+        persistUsers();
+    }
     private static void checkUsername(String username, String password) throws InvalidPassword,InvalidUsername{
         int ok=0;
         for (User user : users) {
@@ -62,8 +79,6 @@ public class UserService {
             throw new InvalidUsername();
         if(ok==1)
             throw new InvalidPassword();
-
-
     }
 
     private static void checkUserDoesNotAlreadyExist(String username) throws UsernameAlreadyExists {
@@ -81,7 +96,6 @@ public class UserService {
         if(Objects.equals(password,""))
             throw new NoPassword(password);
     }
-
     private static void persistUsers() {
         try {
             ObjectMapper objectMapper = new ObjectMapper();
