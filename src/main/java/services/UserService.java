@@ -51,7 +51,7 @@ public class UserService {
         for (User user : users) {
             if (Objects.equals(username, user.getUser())) {
                 if (Objects.equals("Instructor", user.getRole())) {
-                    user = null;
+                  user = null;
                     break;
                 }
                 throw new InstructorNotFound();
