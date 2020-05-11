@@ -31,4 +31,12 @@ public class AdministratorController {
         window.setScene(tableScene);
         window.show();
     }
+
+    public void Back(ActionEvent event) throws IOException {
+        Parent view2= FXMLLoader.load(getClass().getClassLoader().getResource("login.fxml"));
+        Scene tableScene=new Scene(view2);
+        Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
+        window.setScene(tableScene);
+        window.show();
+    }
 }

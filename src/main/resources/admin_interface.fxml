@@ -16,6 +16,7 @@
         <Button onAction="#deleteAccount" text="delete instructor" />
         <Button onAction="#createAccount" text="create instructor" />
     </HBox>
+   <Button mnemonicParsing="false" onAction="#Back" text="Back" GridPane.rowIndex="9" />
     <columnConstraints>
         <ColumnConstraints />
         <ColumnConstraints />
@@ -31,5 +32,6 @@
         <RowConstraints />
         <RowConstraints />
         <RowConstraints />
+      <RowConstraints />
     </rowConstraints>
 </GridPane>

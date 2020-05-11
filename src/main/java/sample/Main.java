@@ -1,5 +1,6 @@
 package sample;
 
+import controllers.LoginController;
 import services.UserService;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -17,7 +18,6 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
 
         UserService.loadUsersFromFile();
-
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("login.fxml"));
         primaryStage.setTitle("Login");
         primaryStage.setScene(new Scene(root, 300, 275));
