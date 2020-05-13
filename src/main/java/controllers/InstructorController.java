@@ -11,9 +11,12 @@ import services.InstructorService;
 import java.io.IOException;
 
 public class InstructorController {
-    public void viewClients(ActionEvent actionEvent) throws IOException {
-        InstructorService.loadUsersFromFile();
-        InstructorService.afisare();
+    public void viewClients(ActionEvent event) throws IOException {
+        Parent view2= FXMLLoader.load(getClass().getClassLoader().getResource("view_clients.fxml"));
+        Scene tableScene=new Scene(view2);
+        Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
+        window.setScene(tableScene);
+        window.show();
     }
 
 

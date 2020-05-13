@@ -14,7 +14,7 @@ import java.util.List;
 
 public class InstructorService {
 
-    private static List<Client> clients;
+    public static List<Client> clients;
     private static final Path USERS_PATH = FileSystemService.getPathToFile("config", LoginController.getCurrectUsername()+".json");
     public static void loadUsersFromFile() throws IOException {
 
@@ -25,11 +25,6 @@ public class InstructorService {
                 });
     }
 
-    public static void afisare(){
-        for (Client client : clients){
-            System.out.println(client.getClient()+" "+client.getEntryHour()+" "+client.getExitHour());
-        }
-    }
 
 
 }
