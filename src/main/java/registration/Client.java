@@ -4,11 +4,13 @@ import java.util.Objects;
 
 public class Client {
     private String client;
-    private int hour;
+    private int entryHour;
+    private int exitHour;
 
-    public Client(String client, int hour) {
+    public Client(String client, int hour, int hour2) {
         this.client = client;
-        this.hour=hour;
+        this.entryHour=hour;
+        this.exitHour=hour2;
     }
 
     public Client() {
@@ -18,16 +20,24 @@ public class Client {
         return client;
     }
 
-    public int getHour() {
-        return hour;
+    public int getEntryHour() {
+        return entryHour;
+    }
+
+    public int getExitHour() {
+        return exitHour;
     }
 
     public void setClient(String client) {
         this.client = client;
     }
 
-    public void setHour(int hour) {
-        this.hour = hour;
+    public void setEntryHour(int entryHour) {
+        this.entryHour = entryHour;
+    }
+
+    public void setExitHour(int exitHour) {
+        this.exitHour = exitHour;
     }
 
     @Override
@@ -37,14 +47,16 @@ public class Client {
 
         Client client1 = (Client) o;
 
-        if (hour != client1.hour) return false;
+        if (entryHour != client1.entryHour) return false;
+        if (exitHour != client1.exitHour) return false;
         return client.equals(client1.client);
     }
 
     @Override
     public int hashCode() {
         int result = client.hashCode();
-        result = 31 * result + hour;
+        result = 31 * result + entryHour;
+        result = 31 * result + exitHour;
         return result;
     }
 }

@@ -15,7 +15,7 @@ import java.util.List;
 public class InstructorService {
 
     private static List<Client> clients;
-    private static final Path USERS_PATH = FileSystemService.getPathToFile("config", LoginController.getUser()+".json");
+    private static final Path USERS_PATH = FileSystemService.getPathToFile("config", LoginController.getCurrectUsername()+".json");
     public static void loadUsersFromFile() throws IOException {
 
         ObjectMapper objectMapper = new ObjectMapper();
@@ -23,6 +23,12 @@ public class InstructorService {
         clients = objectMapper.readValue(USERS_PATH.toFile(),
                 new TypeReference<List<Client>>() {
                 });
+    }
+
+    public static void afisare(){
+        for (Client client : clients){
+            System.out.println(client.getClient()+" "+client.getEntryHour()+" "+client.getExitHour());
+        }
     }
 
 
