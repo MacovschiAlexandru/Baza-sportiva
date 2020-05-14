@@ -48,15 +48,18 @@ public class UserService {
         checkUsername(username,password);
     }
     public static void deleteInstructor(String username) throws InstructorNotFound {
+        int ok=0;
         for (User user : users) {
             if (Objects.equals(username, user.getUser())) {
                 if (Objects.equals("Instructor", user.getRole())) {
-                  user = null;
+                    ok = 1;
+                    user = null;
                     break;
                 }
-                throw new InstructorNotFound();
             }
         }
+             if(ok==0)
+                 throw new InstructorNotFound();
     }
     public static void addInstructor(String username, String password) throws UsernameAlreadyExists, NoPassword, NoUserName{
         checkUserDoesNotAlreadyExist(username);

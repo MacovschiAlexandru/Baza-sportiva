@@ -21,7 +21,7 @@ public class DeleteInstructorController {
     @FXML
     public TextField usernameField;
     @FXML
-    public void handleDeleteButton(ActionEvent actionEvent) throws IOException {
+    public void handleDeleteButton(ActionEvent actionEvent) throws IOException  {
         try{
             UserService.deleteInstructor(usernameField.getText());
             deleteMessage.setText("Instructor has been removed!");
