@@ -20,7 +20,7 @@ public class UserService {
 
     private static List<User> users;
     private static final Path USERS_PATH = FileSystemService.getPathToFile("config", "users.json");
-
+    public static String role;
     public static void loadUsersFromFile() throws IOException {
 
         if (!Files.exists(USERS_PATH)) {
@@ -70,6 +70,7 @@ public class UserService {
         for (User user : users) {
             if (Objects.equals(username, user.getUser()))
             {ok=1;
+            role=user.getRole();
 
             if(Objects.equals(encodePassword(username,password), user.getPassword()))
                 ok=2;
@@ -79,6 +80,11 @@ public class UserService {
             throw new InvalidUsername();
         if(ok==1)
             throw new InvalidPassword();
+    }
+
+    public static String getRole()
+    {
+        return role;
     }
 
     private static void checkUserDoesNotAlreadyExist(String username) throws UsernameAlreadyExists {

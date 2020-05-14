@@ -5,18 +5,18 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane alignment="center" hgap="10" prefHeight="400" prefWidth="600" vgap="10" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AdministratorController">
+<GridPane alignment="center" hgap="10" prefHeight="400" prefWidth="600" vgap="10" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.InstructorController">
     <padding>
         <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
     </padding>
-    <Text id="title-text" text="administrator menu" GridPane.columnIndex="1" GridPane.columnSpan="2" />
+    <Text id="title-text" text="Instructor Menu" GridPane.columnIndex="1" GridPane.columnSpan="2" />
 
     <Text fx:id="deleteMessage" GridPane.columnIndex="2" GridPane.rowIndex="7" />
     <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="2" GridPane.rowIndex="5">
-        <Button onAction="#deleteAccount" text="delete instructor" />
-        <Button onAction="#createAccount" text="create instructor" />
+        <Button onAction="#viewClients" text="vezi lista de clienti" />
+        <Button onAction="#response" text="vezi cereri" />
     </HBox>
-   <Button mnemonicParsing="false" onAction="#Back" text="Back" GridPane.rowIndex="9" />
+    <Button mnemonicParsing="false" onAction="#Back" text="Back" GridPane.rowIndex="9" />
     <columnConstraints>
         <ColumnConstraints />
         <ColumnConstraints />
@@ -32,6 +32,6 @@
         <RowConstraints />
         <RowConstraints />
         <RowConstraints />
-      <RowConstraints />
+        <RowConstraints />
     </rowConstraints>
 </GridPane>
