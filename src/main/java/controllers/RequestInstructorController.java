@@ -1,6 +1,8 @@
 package controllers;
 
 import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
+import exceptions.NoEntryHour;
+import exceptions.NoExitHour;
 import exceptions.NoUserName;
 import exceptions.UsernameAlreadyExists;
 import javafx.event.ActionEvent;
@@ -17,29 +19,40 @@ import sun.text.normalizer.UCharacter;
 
 import java.io.IOException;
 
+import static services.ClientService.checkEnHIsNotEmpty;
+import static services.ClientService.checkExHIsNotEmpty;
+
 public class RequestInstructorController {
 
     @FXML
     public  TextField usernameField;
     @FXML
-    private TextField entryHour;
+    public TextField entryHour;
     @FXML
-    private TextField exitHour;
-    @FXML Text requestMsg;
+    public TextField exitHour;
+    @FXML
+    public Text requestMessage;
     public static String text;
     public int enH, exH;
-    public void requestInstructor(ActionEvent event) throws NoUserName, IOException {
-        try{
+    public void requestInstructor(ActionEvent event) throws IOException, NoUserName, NoEntryHour, NoExitHour {
+        try{ checkEnHIsNotEmpty(entryHour.getText());
+            checkExHIsNotEmpty(exitHour.getText());
             text = usernameField.getText();
             enH = Integer.parseInt(entryHour.getText());
             exH = Integer.parseInt(exitHour.getText());
             ClientService.addRequest(LoginController.getCurrectUsername(), enH, exH);
+            requestMessage.setText("your request has been sent!");
         }catch (NoUserName e){
-            requestMsg.setText("instructor not found");
+            requestMessage.setText(e.getMessage());
+        }catch(NoEntryHour e){
+            requestMessage.setText(e.getMessage());
+        }catch(NoExitHour e){
+            requestMessage.setText(e.getMessage());
         }
 
     }
    public static String getUser(){return text;}
+
     public void Back(ActionEvent event) throws IOException {
         Parent view2= FXMLLoader.load(getClass().getClassLoader().getResource("client_interface.fxml"));
         Scene tableScene=new Scene(view2);

@@ -22,7 +22,7 @@
     <Label text="Exit hour" GridPane.columnIndex="1" GridPane.rowIndex="3" />
 
     <TextField fx:id="exitHour" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-    <Text fx:id="requestMessage" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+    <Text fx:id="requestMessage" GridPane.columnIndex="1" GridPane.rowIndex="6" />
     <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="2" GridPane.rowIndex="5">
         <Button onAction="#requestInstructor" text="request" />
         <Button onAction="#Back" text="back" />
