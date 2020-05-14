@@ -84,7 +84,9 @@ public class UserService {
         if(ok==1)
             throw new InvalidPassword();
     }
-
+ public static void addAdmin(){
+     users.add(new User("admin", encodePassword("admin", "admin"), "admin"));
+ }
     public static String getRole()
     {
         return role;
@@ -96,6 +98,7 @@ public class UserService {
                 throw new UsernameAlreadyExists(username);
         }
     }
+
     private static void checkUserIsNotEmpty(String username)throws NoUserName {
           if(Objects.equals(username, ""))
               throw new NoUserName(username);

@@ -40,7 +40,9 @@ public class CreateInstructorController {
 
     public void createJson() throws IOException {
         final Path USERS_PATH = FileSystemService.getPathToFile("config", usernameField.getText()+".json");
+        final Path USERS_PATH2 = FileSystemService.getPathToFile("config", usernameField.getText()+"_requests.json");
         FileUtils.copyURLToFile(UserService.class.getClassLoader().getResource("users.json"), USERS_PATH.toFile());
+        FileUtils.copyURLToFile(UserService.class.getClassLoader().getResource("users.json"), USERS_PATH2.toFile());
     }
 
 
