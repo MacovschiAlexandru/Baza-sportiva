@@ -63,7 +63,7 @@ public class ClientService {
             if(Objects.equals(LoginController.getCurrectUsername(), cl.getClient()) &&
                     ((Integer.parseInt(enH) == cl.getEntryHour())
                             || (Integer.parseInt(enH) > cl.getEntryHour()
-                            && Integer.parseInt(enH) <=cl.getExitHour()))) {
+                            && Integer.parseInt(enH) <cl.getExitHour()))) {
                 throw new UnacceptedEntryHour();
             }
         }
@@ -78,7 +78,7 @@ public class ClientService {
             if(Objects.equals(LoginController.getCurrectUsername(), cl.getClient()) &&
                     ((Integer.parseInt(exH) == cl.getExitHour())
                             || (Integer.parseInt(exH) > cl.getEntryHour()
-                            && Integer.parseInt(exH) <=cl.getExitHour()))) {
+                            && Integer.parseInt(exH) <cl.getExitHour()))) {
                 throw new UnacceptedExitHour();
             }
         }
