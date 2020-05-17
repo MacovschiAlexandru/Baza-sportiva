@@ -1,10 +1,7 @@
 package controllers;
 
 import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
-import exceptions.NoEntryHour;
-import exceptions.NoExitHour;
-import exceptions.NoUserName;
-import exceptions.UsernameAlreadyExists;
+import exceptions.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -34,7 +31,7 @@ public class RequestInstructorController {
     public Text requestMessage;
     public static String text;
     public int enH, exH;
-    public void requestInstructor(ActionEvent event) throws IOException, NoUserName, NoEntryHour, NoExitHour {
+    public void requestInstructor(ActionEvent event) throws IOException, NoUserName, NoEntryHour, NoExitHour, UnacceptedEntryHour, UnacceptedExitHour {
         try{ checkEnHIsNotEmpty(entryHour.getText());
             checkExHIsNotEmpty(exitHour.getText());
             text = usernameField.getText();
@@ -48,10 +45,16 @@ public class RequestInstructorController {
             requestMessage.setText(e.getMessage());
         }catch(NoExitHour e){
             requestMessage.setText(e.getMessage());
+        }catch (UnacceptedEntryHour e){
+            requestMessage.setText(e.getMessage());
+        }catch(UnacceptedExitHour e){
+            requestMessage.setText(e.getMessage());
         }
 
     }
    public static String getUser(){return text;}
+   public int getEnH(){return enH;}
+   public int getExH(){return exH;}
 
     public void Back(ActionEvent event) throws IOException {
         Parent view2= FXMLLoader.load(getClass().getClassLoader().getResource("client_interface.fxml"));
