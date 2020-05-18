@@ -60,6 +60,22 @@ public class UserService {
         for(User i : delIns)
             if(Objects.equals(username,i.getUser()) && Objects.equals(i.getRole(),"Instructor"))
                 ok = 1;
+               if(ok==1)
+            for(User ins : delIns){
+                if(!(Objects.equals(username, ins.getUser()) && Objects.equals(ins.getRole(), "Instructor"))){
+                    afterRemoval.add(ins);
+                }
+                FileUtils.copyURLToFile(UserService.class.getClassLoader().getResource("users.json"), USERS_PATH.toFile());
+                try {
+                    ObjectMapper objMapper = new ObjectMapper();
+                    objMapper.writerWithDefaultPrettyPrinter().writeValue(USERS_PATH.toFile(),afterRemoval);
+                } catch (IOException e) {
+                    throw new CouldNotWriteUsersException();
+                }
+            }
+        else
+            throw new InstructorNotFound();
+        afterRemoval.clear();
     }
     public static void addInstructor(String username, String password) throws UsernameAlreadyExists, NoPassword, NoUserName{
         checkUserDoesNotAlreadyExist(username);
