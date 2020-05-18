@@ -2,6 +2,7 @@ package services;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sun.deploy.security.SelectableSecurityManager;
 import exceptions.*;
 import org.apache.commons.io.FileUtils;
 import registration.User;
@@ -12,6 +13,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -19,6 +21,8 @@ import java.util.Objects;
 public class UserService {
 
     private static List<User> users;
+    private static List<User> delIns;
+    private static List<User> afterRemoval = new ArrayList<User>();
     private static final Path USERS_PATH = FileSystemService.getPathToFile("config", "users.json");
     public static String role;
     public static void loadUsersFromFile() throws IOException {
@@ -47,19 +51,31 @@ public class UserService {
         checkPassIsNotEmpty(password);
         checkUsername(username,password);
     }
-    public static void deleteInstructor(String username) throws InstructorNotFound {
+    public static void deleteInstructor(String username) throws InstructorNotFound, IOException {
         int ok=0;
-        for (User user : users) {
-            if (Objects.equals(username, user.getUser())) {
-                if (Objects.equals("Instructor", user.getRole())) {
-                    ok = 1;
-                    user = null;
-                    break;
-                }
+        ObjectMapper objectMapper = new ObjectMapper();
+        delIns = objectMapper.readValue(USERS_PATH.toFile(),
+                new TypeReference<List<User>>() {
+                });
+        for(User i : delIns)
+            if(Objects.equals(username,i.getUser()) && Objects.equals(i.getRole(),"Instructor"))
+                ok = 1;
+            if(ok==1)
+                for(User ins : delIns){
+            if(!(Objects.equals(username, ins.getUser()) && Objects.equals(ins.getRole(), "Instructor"))){
+             afterRemoval.add(ins);
+            }
+            FileUtils.copyURLToFile(UserService.class.getClassLoader().getResource("users.json"), USERS_PATH.toFile());
+            try {
+                ObjectMapper objMapper = new ObjectMapper();
+                objMapper.writerWithDefaultPrettyPrinter().writeValue(USERS_PATH.toFile(),afterRemoval);
+            } catch (IOException e) {
+                throw new CouldNotWriteUsersException();
             }
         }
-             if(ok==0)
-                 throw new InstructorNotFound();
+            else
+                throw new InstructorNotFound();
+    afterRemoval.clear();
     }
     public static void addInstructor(String username, String password) throws UsernameAlreadyExists, NoPassword, NoUserName{
         checkUserDoesNotAlreadyExist(username);
