@@ -51,6 +51,15 @@ public class LoginController {
                 window.setScene(tableScene);
                 window.show();
             }
+            else
+            if(Objects.equals(UserService.getRole(),"client")){
+                Parent view2= FXMLLoader.load(getClass().getClassLoader().getResource("client_interface.fxml"));
+                Scene tableScene=new Scene(view2);
+                text=usernameField.getText();
+                Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
+                window.setScene(tableScene);
+                window.show();
+            }
 
 
 
