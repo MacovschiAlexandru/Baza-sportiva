@@ -52,7 +52,14 @@ public class UserService {
         checkUsername(username,password);
     }
     public static void deleteInstructor(String username) throws InstructorNotFound, IOException {
-
+        int ok=0;
+        ObjectMapper objectMapper = new ObjectMapper();
+        delIns = objectMapper.readValue(USERS_PATH.toFile(),
+                new TypeReference<List<User>>() {
+                });
+        for(User i : delIns)
+            if(Objects.equals(username,i.getUser()) && Objects.equals(i.getRole(),"Instructor"))
+                ok = 1;
     }
     public static void addInstructor(String username, String password) throws UsernameAlreadyExists, NoPassword, NoUserName{
         checkUserDoesNotAlreadyExist(username);
