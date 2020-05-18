@@ -15,12 +15,23 @@ import java.util.List;
 public class InstructorService {
 
     public static List<Client> clients;
+    public static List<Client> requests;
     private static final Path USERS_PATH = FileSystemService.getPathToFile("config", LoginController.getCurrectUsername()+".json");
+    private static final Path REQUESTS_PATH = FileSystemService.getPathToFile("config", LoginController.getCurrectUsername()+"_requests.json");
     public static void loadUsersFromFile() throws IOException {
 
         ObjectMapper objectMapper = new ObjectMapper();
 
         clients = objectMapper.readValue(USERS_PATH.toFile(),
+                new TypeReference<List<Client>>() {
+                });
+    }
+
+    public static void loadRequestsFromFile() throws IOException {
+
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        requests = objectMapper.readValue(REQUESTS_PATH.toFile(),
                 new TypeReference<List<Client>>() {
                 });
     }
