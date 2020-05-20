@@ -33,6 +33,7 @@ public class ViewRequestsController {
     public TableColumn<Client, Double> clientEntryHourColumn;
     @FXML
     public TableColumn<Client, Double> clientExitHourColumn;
+    public static String clientToSend;
 
 
     @FXML
@@ -65,12 +66,21 @@ public class ViewRequestsController {
                     {
                         btn.setOnAction((ActionEvent event) -> {
                             Client client = getTableView().getItems().get(getIndex());
-
+                            clientToSend=client.getClient();
+                            System.out.println(clientToSend);
                             try {
                                 InstructorService.loadUsersFromFile();
                                 InstructorService.addClient(client.getClient(),client.getEntryHour(),client.getExitHour());
+
+                                Parent view2= FXMLLoader.load(getClass().getClassLoader().getResource("send_message.fxml"));
+                                Scene tableScene=new Scene(view2);
+                                Stage window=new Stage();
+                                window.setScene(tableScene);
+                                window.show();
+
                                 clientTable.getItems().remove(getTableView().getItems().get(getIndex()));
                                 InstructorService.deleteRequest(client.getClient());
+                                InstructorService.loadRequestsFromFile();
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
@@ -98,6 +108,11 @@ public class ViewRequestsController {
 
     }
 
+    public static String getClientToSend()
+    {
+        return clientToSend;
+    }
+
     private void addRejectionButtonToTable() {
         TableColumn<Client, Void> colBtn = new TableColumn("Reject Button Column");
 
@@ -111,10 +126,19 @@ public class ViewRequestsController {
                     {
                         btn.setOnAction((ActionEvent event) -> {
                             Client client = getTableView().getItems().get(getIndex());
-
+                            clientToSend=client.getClient();
+                            System.out.println(clientToSend);
                             try {
                                 clientTable.getItems().remove(getTableView().getItems().get(getIndex()));
                                 InstructorService.deleteRequest(client.getClient());
+                                InstructorService.loadRequestsFromFile();
+
+                                Parent view2= FXMLLoader.load(getClass().getClassLoader().getResource("send_message.fxml"));
+                                Scene tableScene=new Scene(view2);
+                                Stage window=new Stage();
+                                window.setScene(tableScene);
+                                window.show();
+
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }

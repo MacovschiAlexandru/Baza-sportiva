@@ -2,6 +2,7 @@ package services;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sun.deploy.security.SelectableSecurityManager;
 import controllers.LoginController;
 import exceptions.CouldNotWriteUsersException;
 import exceptions.InstructorNotFound;
@@ -64,6 +65,7 @@ public class InstructorService {
             for(Client client : delReq){
                 if(!(Objects.equals(username, client.getClient()))){
                     afterRemoval.add(client);
+
                 }
                 FileUtils.copyURLToFile(UserService.class.getClassLoader().getResource("users.json"), REQUESTS_PATH.toFile());
 

@@ -37,6 +37,8 @@ public class RegistrationController {
             registrationMessage.setText(e.getMessage());
         } catch (NoPassword e){
             registrationMessage.setText(e.getMessage());
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
