@@ -37,9 +37,6 @@ public class ViewClientsController {
         clientExitHourColumn.setCellValueFactory(new PropertyValueFactory<>("exitHour"));
         setClients();
         clientTable.setItems(clientList);
-        InstructorService.loadRequestsFromFile();
-        for (Client request : InstructorService.requests)
-        System.out.println(request.getClient()+" "+request.getEntryHour()+" "+request.getExitHour());
     }
 
     private ObservableList<Client> clientList;

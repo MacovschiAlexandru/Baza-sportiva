@@ -59,4 +59,13 @@ public class Client {
         result = 31 * result + exitHour;
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "Client{" +
+                "client='" + client + '\'' +
+                ", entryHour=" + entryHour +
+                ", exitHour=" + exitHour +
+                '}';
+    }
 }
