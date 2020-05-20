@@ -32,10 +32,10 @@ public class ViewClientsController {
 
     @FXML
     public void initialize() throws IOException {
+        setClients();
         clientNameColumn.setCellValueFactory(new PropertyValueFactory<>("client"));
         clientEntryHourColumn.setCellValueFactory(new PropertyValueFactory<>("entryHour"));
         clientExitHourColumn.setCellValueFactory(new PropertyValueFactory<>("exitHour"));
-        setClients();
         clientTable.setItems(clientList);
     }
 

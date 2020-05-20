@@ -64,8 +64,17 @@ public class ViewRequestsController {
 
                     {
                         btn.setOnAction((ActionEvent event) -> {
-                            Client data = getTableView().getItems().get(getIndex());
-                            System.out.println("selectedData: " + data.getClient());
+                            Client client = getTableView().getItems().get(getIndex());
+
+                            try {
+                                InstructorService.loadUsersFromFile();
+                                InstructorService.addClient(client.getClient(),client.getEntryHour(),client.getExitHour());
+                                clientTable.getItems().remove(getTableView().getItems().get(getIndex()));
+                                InstructorService.deleteRequest(client.getClient());
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+
                         });
                     }
 
@@ -101,8 +110,15 @@ public class ViewRequestsController {
 
                     {
                         btn.setOnAction((ActionEvent event) -> {
+                            Client client = getTableView().getItems().get(getIndex());
 
-                            System.out.println("Rejected ");
+                            try {
+                                clientTable.getItems().remove(getTableView().getItems().get(getIndex()));
+                                InstructorService.deleteRequest(client.getClient());
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+
                         });
                     }
 
