@@ -28,21 +28,33 @@ public class UserService {
 
         if (!Files.exists(USERS_PATH)) {
             FileUtils.copyURLToFile(UserService.class.getClassLoader().getResource("users.json"), USERS_PATH.toFile());
-        }
+            ObjectMapper objectMapper = new ObjectMapper();
 
+            users = objectMapper.readValue(USERS_PATH.toFile(),
+                    new TypeReference<List<User>>() {
+                    });
+            addAdmin();
+        }
+        else{
         ObjectMapper objectMapper = new ObjectMapper();
 
         users = objectMapper.readValue(USERS_PATH.toFile(),
                 new TypeReference<List<User>>() {
-                });
+                });}
     }
 
-    public static void addUser(String username, String password) throws UsernameAlreadyExists, NoPassword, NoUserName{
+    public static void addUser(String username, String password) throws UsernameAlreadyExists, NoPassword, NoUserName, IOException {
         checkUserDoesNotAlreadyExist(username);
         checkUserIsNotEmpty(username);
         checkPassIsNotEmpty(password);
         users.add(new User(username, encodePassword(username, password), "client"));
+        createJson(username);
         persistUsers();
+    }
+
+    private static void createJson(String username) throws IOException {
+        final Path USERS_PATH = FileSystemService.getPathToFile("config", username+".json");
+        FileUtils.copyURLToFile(UserService.class.getClassLoader().getResource("users.json"), USERS_PATH.toFile());
     }
 
     public static void checkUser(String username,String password) throws NoUserName,NoPassword,InvalidPassword,InvalidUsername{
@@ -100,9 +112,13 @@ public class UserService {
             throw new InvalidPassword();
     }
  public static void addAdmin(){
-     users.add(new User("admin", encodePassword("admin", "admin"), "admin"));
+
+
+        users.add(new User("admin", encodePassword("admin", "admin"), "admin"));
  }
-    public static String getRole()
+
+
+ public static String getRole()
     {
         return role;
     }
