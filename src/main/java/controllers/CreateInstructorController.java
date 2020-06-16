@@ -14,6 +14,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.apache.commons.io.FileUtils;
+import registration.Instructor;
 import registration.User;
 import services.FileSystemService;
 import services.UserService;
@@ -50,6 +51,7 @@ public class CreateInstructorController {
         try {
             UserService.addInstructor(usernameField.getText(), passwordField.getText());
             createJson();
+            ViewInstructorsController.instructors.add(new Instructor(usernameField.getText(),0));
             creationMessage.setText("Account created successfully!");
         } catch (UsernameAlreadyExists e) {
             creationMessage.setText(e.getMessage());

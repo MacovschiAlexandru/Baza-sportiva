@@ -3,30 +3,48 @@ package registration;
 import java.util.Objects;
 
 public class Instructor {
-    private String instructor;
+    private String name;
+    private int clients;
 
-    public Instructor(String instructor) {
-        this.instructor = instructor;
+    public Instructor(String name, int clients) {
+        this.name = name;
+        this.clients = clients;
+    }
+    public Instructor(){
+
     }
 
-    public String getInstructor() {
-        return instructor;
+    public String getName() {
+        return name;
     }
 
-    public void setInstructor(String instructor) {
-        this.instructor = instructor;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getClients() {
+        return clients;
+    }
+
+    public void setClients(int clients) {
+        this.clients = clients;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Instructor)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
+
         Instructor that = (Instructor) o;
-        return instructor.equals(that.instructor);
+
+        if (clients != that.clients) return false;
+        return name.equals(that.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(instructor);
+        int result = name.hashCode();
+        result = 31 * result + clients;
+        return result;
     }
 }
