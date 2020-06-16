@@ -1,5 +1,7 @@
 package registration;
 
+import services.InstructorService;
+
 import java.util.Objects;
 
 public class Instructor {
@@ -12,6 +14,16 @@ public class Instructor {
     }
     public Instructor(){
 
+    }
+    public void addNewClient(String clientName)
+    {
+        int ok=1;
+        for(Client i: InstructorService.clients) {
+            if (Objects.equals(i.getClient(), clientName))
+                ok=0;
+        }
+        if(ok==1)
+        clients=clients+1;
     }
 
     public String getName() {

@@ -3,9 +3,9 @@ package services;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import controllers.LoginController;
-import exceptions.CouldNotWriteUsersException;
-import exceptions.InstructorNotFound;
+import exceptions.*;
 import org.apache.commons.io.FileUtils;
+import registration.Instructor;
 import registration.User;
 import registration.Client;
 
@@ -20,12 +20,45 @@ public class InstructorService {
 
     public static List<Client> clients;
     public static List<Client> requests;
+    public static List<Instructor> instructors;
+    private static List<Instructor> afterChange = new ArrayList<Instructor>();
+    private static List<Instructor> changeInstructor;
     public static List<Client> delReq;
     private static List<Client> afterRemoval = new ArrayList<Client>();
-    private static final Path USERS_PATH = FileSystemService.getPathToFile("config", LoginController.getCurrectUsername()+".json");
-    private static final Path REQUESTS_PATH = FileSystemService.getPathToFile("config", LoginController.getCurrectUsername()+"_requests.json");
-    public static void loadUsersFromFile() throws IOException {
+    private static final Path INSTRUCTORS_PATH = FileSystemService.getPathToFile("config", "instructors.json");
+    private static  Path USERS_PATH = FileSystemService.getPathToFile("config", LoginController.getCurrectUsername()+".json");
+    private static  Path REQUESTS_PATH = FileSystemService.getPathToFile("config", LoginController.getCurrectUsername()+"_requests.json");
+    public static void loadInstructorsFromFile() throws IOException {
+        if (!Files.exists(INSTRUCTORS_PATH)) {
+            FileUtils.copyURLToFile(UserService.class.getClassLoader().getResource("users.json"), INSTRUCTORS_PATH.toFile());
+            ObjectMapper objectMapper = new ObjectMapper();
 
+            instructors = objectMapper.readValue(INSTRUCTORS_PATH.toFile(),
+                    new TypeReference<List<Instructor>>() {
+                    });
+        }
+        else{
+            ObjectMapper objectMapper = new ObjectMapper();
+
+            instructors = objectMapper.readValue(INSTRUCTORS_PATH.toFile(),
+                    new TypeReference<List<Instructor>>() {
+                    });}
+    }
+    public static void addInstructor(String name, int clients)  {
+        instructors.add(new Instructor(name,clients));
+        persistInstructors();
+    }
+    private static void persistInstructors() {
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            objectMapper.writerWithDefaultPrettyPrinter().writeValue(INSTRUCTORS_PATH.toFile(), instructors);
+        } catch (IOException e) {
+            throw new CouldNotWriteUsersException();
+        }
+    }
+
+    public static void loadUsersFromFile() throws IOException {
+        USERS_PATH = FileSystemService.getPathToFile("config", LoginController.getCurrectUsername()+".json");
         ObjectMapper objectMapper = new ObjectMapper();
 
         clients = objectMapper.readValue(USERS_PATH.toFile(),
@@ -34,7 +67,7 @@ public class InstructorService {
     }
 
     public static void loadRequestsFromFile() throws IOException {
-
+        REQUESTS_PATH = FileSystemService.getPathToFile("config", LoginController.getCurrectUsername()+"_requests.json");
         ObjectMapper objectMapper = new ObjectMapper();
 
         requests = objectMapper.readValue(REQUESTS_PATH.toFile(),
@@ -56,6 +89,30 @@ public class InstructorService {
         }
     }
 
+    public static void changeNumberOfClients(String name,String clientName)throws IOException{
+        ObjectMapper objectMapper = new ObjectMapper();
+        changeInstructor = objectMapper.readValue(INSTRUCTORS_PATH.toFile(),
+                new TypeReference<List<Instructor>>() {
+                });
+        for(Instructor instructor : changeInstructor){
+            if(!(Objects.equals(name, instructor.getName()))){
+                afterChange.add(instructor);
+
+            }
+            else
+            {
+                instructor.addNewClient(clientName);
+                afterChange.add(instructor);
+            }
+            FileUtils.copyURLToFile(UserService.class.getClassLoader().getResource("users.json"), INSTRUCTORS_PATH.toFile());
+
+            ObjectMapper objMapper = new ObjectMapper();
+            objMapper.writerWithDefaultPrettyPrinter().writeValue(INSTRUCTORS_PATH.toFile(),afterChange);
+
+        }
+        afterChange.clear();
+    }
+
     public static void deleteRequest(String username) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
         delReq = objectMapper.readValue(REQUESTS_PATH.toFile(),
@@ -74,6 +131,7 @@ public class InstructorService {
             }
         afterRemoval.clear();
     }
+
 
 
 
