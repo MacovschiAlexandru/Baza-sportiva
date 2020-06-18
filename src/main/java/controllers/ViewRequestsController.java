@@ -69,7 +69,7 @@ public class ViewRequestsController {
                         btn.setOnAction((ActionEvent event) -> {
                             Client client = getTableView().getItems().get(getIndex());
                             clientToSend=client.getClient();
-                            System.out.println(clientToSend);
+
                             try {
                                 InstructorService.loadUsersFromFile(LoginController.getCurrectUsername());
                                 InstructorService.loadInstructorsFromFile();
@@ -132,7 +132,7 @@ public class ViewRequestsController {
                         btn.setOnAction((ActionEvent event) -> {
                             Client client = getTableView().getItems().get(getIndex());
                             clientToSend=client.getClient();
-                            System.out.println(clientToSend);
+
                             try {
                                 clientTable.getItems().remove(getTableView().getItems().get(getIndex()));
                                 InstructorService.deleteRequest(client.getClient());

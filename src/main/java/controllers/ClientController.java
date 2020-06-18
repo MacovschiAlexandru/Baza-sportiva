@@ -11,7 +11,9 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.apache.commons.io.FileUtils;
 import registration.Instructor;
+import registration.Message;
 import services.FileSystemService;
+import services.MessageService;
 import services.UserService;
 
 import java.io.IOException;
@@ -42,8 +44,12 @@ public class ClientController {
         window.show();
     }
 
-    public void handleRequestButtonAction(ActionEvent event) {
-
+    public void viewMessages(ActionEvent event) throws IOException {
+        Parent view2= FXMLLoader.load(getClass().getClassLoader().getResource("view_messages.fxml"));
+        Scene tableScene=new Scene(view2);
+        Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
+        window.setScene(tableScene);
+        window.show();
     }
 
     public void BackToLogin(ActionEvent event)throws IOException {
