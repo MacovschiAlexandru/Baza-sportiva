@@ -13,6 +13,7 @@ import java.io.IOException;
 
 public class InstructorController {
     public void viewClients(ActionEvent event) throws IOException {
+        InstructorService.loadUsersFromFile(LoginController.getCurrectUsername());
         Parent view2= FXMLLoader.load(getClass().getClassLoader().getResource("view_clients.fxml"));
         Scene tableScene=new Scene(view2);
         Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();

@@ -16,11 +16,13 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Callback;
 import registration.Client;
 import javafx.stage.Stage;
+import registration.Instructor;
 import registration.User;
 import services.InstructorService;
 
 import javax.xml.crypto.Data;
 import java.io.IOException;
+import java.util.Objects;
 
 public class ViewRequestsController {
 
@@ -69,8 +71,11 @@ public class ViewRequestsController {
                             clientToSend=client.getClient();
                             System.out.println(clientToSend);
                             try {
-                                InstructorService.loadUsersFromFile();
+                                InstructorService.loadUsersFromFile(LoginController.getCurrectUsername());
+                                InstructorService.loadInstructorsFromFile();
+                                InstructorService.changeNumberOfClients(LoginController.getCurrectUsername(),clientToSend);
                                 InstructorService.addClient(client.getClient(),client.getEntryHour(),client.getExitHour());
+
 
                                 Parent view2= FXMLLoader.load(getClass().getClassLoader().getResource("send_message.fxml"));
                                 Scene tableScene=new Scene(view2);

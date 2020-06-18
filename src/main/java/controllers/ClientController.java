@@ -10,6 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.apache.commons.io.FileUtils;
+import registration.Instructor;
 import services.FileSystemService;
 import services.UserService;
 
