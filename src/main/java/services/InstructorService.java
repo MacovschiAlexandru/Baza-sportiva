@@ -57,8 +57,8 @@ public class InstructorService {
         }
     }
 
-    public static void loadUsersFromFile() throws IOException {
-        USERS_PATH = FileSystemService.getPathToFile("config", LoginController.getCurrectUsername()+".json");
+    public static void loadUsersFromFile(String i) throws IOException {
+        USERS_PATH = FileSystemService.getPathToFile("config", i+".json");
         ObjectMapper objectMapper = new ObjectMapper();
 
         clients = objectMapper.readValue(USERS_PATH.toFile(),

@@ -41,7 +41,7 @@ public class ViewClientsController {
 
     private ObservableList<Client> clientList;
     private void setClients() throws IOException {
-        InstructorService.loadUsersFromFile();
+
             clientList= FXCollections.observableArrayList(InstructorService.clients);
     }
 

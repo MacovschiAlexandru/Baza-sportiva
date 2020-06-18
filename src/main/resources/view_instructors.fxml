@@ -10,9 +10,9 @@
             <center>
                 <TableView fx:id="instructorTable" prefHeight="400.0" prefWidth="600.0" BorderPane.alignment="CENTER">
                     <columns>
-                        <TableColumn fx:id="nameColumn" prefWidth="90.0" text="Name" />
+                        <TableColumn fx:id="NameColumn" prefWidth="90.0" text="Name" />
                         <TableColumn fx:id="clientsColumn" prefWidth="90.0" text="Number of clients" />
-                        <TableColumn fx:id="scheduleColumn" prefWidth="90.0" sortType="DESCENDING" text="Schedule" />
+
                     </columns>
                 </TableView>
             </center>

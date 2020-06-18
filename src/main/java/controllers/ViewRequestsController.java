@@ -71,7 +71,7 @@ public class ViewRequestsController {
                             clientToSend=client.getClient();
                             System.out.println(clientToSend);
                             try {
-                                InstructorService.loadUsersFromFile();
+                                InstructorService.loadUsersFromFile(LoginController.getCurrectUsername());
                                 InstructorService.loadInstructorsFromFile();
                                 InstructorService.changeNumberOfClients(LoginController.getCurrectUsername(),clientToSend);
                                 InstructorService.addClient(client.getClient(),client.getEntryHour(),client.getExitHour());
