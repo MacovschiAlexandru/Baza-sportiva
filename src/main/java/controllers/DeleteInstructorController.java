@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import services.InstructorService;
 import services.UserService;
 
 import java.io.IOException;
@@ -24,6 +25,7 @@ public class DeleteInstructorController {
     public void handleDeleteButton(ActionEvent actionEvent) throws IOException  {
         try{
             UserService.deleteInstructor(usernameField.getText());
+            InstructorService.deleteInstructor(usernameField.getText());
             deleteMessage.setText("Instructor has been removed!");
         }catch (InstructorNotFound e) {
             deleteMessage.setText(e.getMessage());

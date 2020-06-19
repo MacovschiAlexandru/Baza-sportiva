@@ -15,7 +15,7 @@ public class SendMessageController {
     public Text sendingMessage;
 
     public void handleSendingButton(ActionEvent actionEvent) throws IOException {
-        MessageService.loadMessagesFromFile();
+        MessageService.loadMessagesFromFile(ViewRequestsController.getClientToSend());
         MessageService.addMessage(messageField.getText());
         messageField.setText("Message sent");
     }

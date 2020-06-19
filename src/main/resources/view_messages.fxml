@@ -4,14 +4,14 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="root" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ViewInstructorsController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="root" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ViewMessagesController">
     <children>
         <BorderPane layoutX="14.0" prefHeight="400.0" prefWidth="600.0">
             <center>
-                <TableView fx:id="instructorTable" prefHeight="400.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+                <TableView fx:id="messageTable" prefHeight="400.0" prefWidth="600.0" BorderPane.alignment="CENTER">
                     <columns>
-                        <TableColumn fx:id="NameColumn" prefWidth="90.0" text="Name" />
-                        <TableColumn fx:id="clientsColumn" prefWidth="180.0" text="Number of clients" />
+                        <TableColumn fx:id="nameColumn" prefWidth="90.0" text="Name" />
+                        <TableColumn fx:id="messageColumn" prefWidth="300.0" text="Message" />
 
                     </columns>
                 </TableView>

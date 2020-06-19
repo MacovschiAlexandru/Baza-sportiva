@@ -11,12 +11,13 @@
     </padding>
     <Text id="title-text" text="client menu" GridPane.columnIndex="1" GridPane.columnSpan="2" />
 
-    <Text fx:id="deleteMessage" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+
     <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="2" GridPane.rowIndex="5">
         <Button onAction="#requestInstructor" text="request" />
         <Button onAction="#viewInstructors" text="view instructors" />
     </HBox>
     <Button mnemonicParsing="false" onAction="#BackToLogin" text="Back" GridPane.rowIndex="9" />
+   <Button mnemonicParsing="false" onAction="#viewMessages" text="Messages" GridPane.rowIndex="5" />
     <columnConstraints>
         <ColumnConstraints />
         <ColumnConstraints />
