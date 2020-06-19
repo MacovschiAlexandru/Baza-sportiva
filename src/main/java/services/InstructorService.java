@@ -47,6 +47,10 @@ public class InstructorService {
                     new TypeReference<List<Instructor>>() {
                     });}
     }
+    public static List <Instructor> getInstructors()
+    {
+        return instructors;
+    }
     public static void addInstructor(String name, int clients)  {
         instructors.add(new Instructor(name,clients));
         persistInstructors();
