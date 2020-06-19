@@ -130,6 +130,8 @@ public class UserService {
         }
     }
 
+    public static List<User> getUsers(){return users;}
+
     private static void checkUserIsNotEmpty(String username)throws NoUserName {
           if(Objects.equals(username, ""))
               throw new NoUserName(username);

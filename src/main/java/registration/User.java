@@ -57,7 +57,7 @@ public class User {
     }
     public String toString() {
         return "UserDTO{" +
-                "username='" + user + '\'' +
+                "user='" + user + '\'' +
                 ", password='" + password + '\'' +
                 ", role='" + role + '\'' +
                 '}';
