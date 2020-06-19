@@ -2,7 +2,6 @@ package services;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sun.deploy.security.SelectableSecurityManager;
 import controllers.LoginController;
 import controllers.ViewRequestsController;
 import exceptions.CouldNotWriteUsersException;
