@@ -6,6 +6,7 @@ import controllers.LoginController;
 import exceptions.*;
 import org.apache.commons.io.FileUtils;
 import registration.Instructor;
+import registration.Message;
 import registration.User;
 import registration.Client;
 
@@ -24,7 +25,9 @@ public class InstructorService {
     private static List<Instructor> afterChange = new ArrayList<Instructor>();
     private static List<Instructor> changeInstructor;
     public static List<Client> delReq;
+    public static List<Instructor> delInstructor;
     private static List<Client> afterRemoval = new ArrayList<Client>();
+    private static List<Instructor> afterInstructorRemoval=new ArrayList<Instructor>();
     private static final Path INSTRUCTORS_PATH = FileSystemService.getPathToFile("config", "instructors.json");
     private static  Path USERS_PATH = FileSystemService.getPathToFile("config", LoginController.getCurrectUsername()+".json");
     private static  Path REQUESTS_PATH = FileSystemService.getPathToFile("config", LoginController.getCurrectUsername()+"_requests.json");
@@ -48,6 +51,29 @@ public class InstructorService {
         instructors.add(new Instructor(name,clients));
         persistInstructors();
     }
+
+    public static void deleteInstructor(String name) throws IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        delInstructor = objectMapper.readValue(INSTRUCTORS_PATH.toFile(),
+                new TypeReference<List<Instructor>>() {
+                });
+        for(Instructor instructor : delInstructor){
+            if(Objects.equals(name, instructor.getName())){
+                continue;
+
+            }
+            else
+                afterInstructorRemoval.add(instructor);}
+        FileUtils.copyURLToFile(UserService.class.getClassLoader().getResource("users.json"), INSTRUCTORS_PATH.toFile());
+
+        ObjectMapper objMapper = new ObjectMapper();
+        objMapper.writerWithDefaultPrettyPrinter().writeValue(INSTRUCTORS_PATH.toFile(),afterInstructorRemoval);
+
+
+
+        afterInstructorRemoval.clear();
+    }
+
     private static void persistInstructors() {
         try {
             ObjectMapper objectMapper = new ObjectMapper();
