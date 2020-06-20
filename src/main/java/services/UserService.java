@@ -22,7 +22,7 @@ public class UserService {
     public static List<User> users;
     private static List<User> delIns;
     private static List<User> afterRemoval = new ArrayList<User>();
-    private static final Path USERS_PATH = FileSystemService.getPathToFile("config", "users.json");
+    public static final Path USERS_PATH = FileSystemService.getPathToFile("config", "users.json");
     public static String role;
     public static void loadUsersFromFile() throws IOException {
 
@@ -53,7 +53,7 @@ public class UserService {
         persistUsers();
     }
 
-    private static void createJson(String username) throws IOException {
+    public static void createJson(String username) throws IOException {
         final Path USERS_PATH = FileSystemService.getPathToFile("config", username+".json");
         FileUtils.copyURLToFile(UserService.class.getClassLoader().getResource("users.json"), USERS_PATH.toFile());
     }
@@ -81,6 +81,7 @@ public class UserService {
                 try {
                     ObjectMapper objMapper = new ObjectMapper();
                     objMapper.writerWithDefaultPrettyPrinter().writeValue(USERS_PATH.toFile(),afterRemoval);
+                    UserService.loadUsersFromFile();
                 } catch (IOException e) {
                     throw new CouldNotWriteUsersException();
                 }
@@ -124,7 +125,7 @@ public class UserService {
         return role;
     }
 
-    private static void checkUserDoesNotAlreadyExist(String username) throws UsernameAlreadyExists {
+    static void checkUserDoesNotAlreadyExist(String username) throws UsernameAlreadyExists {
         for (User user : users) {
             if (Objects.equals(username, user.getUser()))
                 throw new UsernameAlreadyExists(username);
@@ -133,12 +134,12 @@ public class UserService {
 
     public static List<User> getUsers(){return users;}
 
-    private static void checkUserIsNotEmpty(String username)throws NoUserName {
+    public static void checkUserIsNotEmpty(String username)throws NoUserName {
           if(Objects.equals(username, ""))
               throw new NoUserName(username);
         }
 
-    private static void checkPassIsNotEmpty(String password)throws NoPassword {
+    public static void checkPassIsNotEmpty(String password)throws NoPassword {
         if(Objects.equals(password,""))
             throw new NoPassword(password);
     }
@@ -151,7 +152,7 @@ public class UserService {
         }
     }
 
-    private static String encodePassword(String salt, String password) {
+    static String encodePassword(String salt, String password) {
         MessageDigest md = getMessageDigest();
         md.update(salt.getBytes(StandardCharsets.UTF_8));
 
