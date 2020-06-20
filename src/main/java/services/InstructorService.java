@@ -28,8 +28,8 @@ public class InstructorService {
     public static List<Instructor> delInstructor;
     private static List<Client> afterRemoval = new ArrayList<Client>();
     private static List<Instructor> afterInstructorRemoval=new ArrayList<Instructor>();
-    private static final Path INSTRUCTORS_PATH = FileSystemService.getPathToFile("config", "instructors.json");
-    private static  Path USERS_PATH = FileSystemService.getPathToFile("config", LoginController.getCurrectUsername()+".json");
+    public static final Path INSTRUCTORS_PATH = FileSystemService.getPathToFile("config", "instructors.json");
+    public static  Path USERS_PATH = FileSystemService.getPathToFile("config", LoginController.getCurrectUsername()+".json");
     private static  Path REQUESTS_PATH = FileSystemService.getPathToFile("config", LoginController.getCurrectUsername()+"_requests.json");
     public static void loadInstructorsFromFile() throws IOException {
         if (!Files.exists(INSTRUCTORS_PATH)) {
