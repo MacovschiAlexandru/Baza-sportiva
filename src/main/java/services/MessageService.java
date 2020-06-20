@@ -5,9 +5,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import controllers.LoginController;
 import controllers.ViewRequestsController;
 import exceptions.CouldNotWriteUsersException;
+import exceptions.InstructorNotFound;
 import org.apache.commons.io.FileUtils;
 import registration.Client;
 import registration.Message;
+import registration.User;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -28,9 +30,10 @@ public class MessageService {
                 new TypeReference<List<Message>>() {
                 });
     }
-    public static void addMessage(String message)
-    {
-        messages.add(new Message(LoginController.getCurrectUsername(),message));
+    public static void addMessage(String message) {
+
+            messages.add(new Message(LoginController.getCurrectUsername(),message));
+
         persistMessages();
 
     }

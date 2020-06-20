@@ -49,6 +49,8 @@ public class RequestInstructorController {
             requestMessage.setText(e.getMessage());
         }catch(UnacceptedExitHour e){
             requestMessage.setText(e.getMessage());
+        }catch(InstructorNotFound e){
+            requestMessage.setText(e.getMessage());
         }
 
     }

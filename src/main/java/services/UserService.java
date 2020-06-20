@@ -19,7 +19,7 @@ import java.util.Objects;
 
 public class UserService {
 
-    private static List<User> users;
+    public static List<User> users;
     private static List<User> delIns;
     private static List<User> afterRemoval = new ArrayList<User>();
     private static final Path USERS_PATH = FileSystemService.getPathToFile("config", "users.json");
@@ -34,6 +34,7 @@ public class UserService {
                     new TypeReference<List<User>>() {
                     });
             addAdmin();
+            persistUsers();
         }
         else{
         ObjectMapper objectMapper = new ObjectMapper();

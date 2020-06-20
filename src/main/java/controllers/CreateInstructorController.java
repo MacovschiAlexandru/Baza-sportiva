@@ -50,6 +50,7 @@ public class CreateInstructorController {
 
     public void handleCreationButton(ActionEvent event) {
         try {
+            UserService.loadUsersFromFile();
             UserService.addInstructor(usernameField.getText(), passwordField.getText());
             createJson();
             InstructorService.loadInstructorsFromFile();
