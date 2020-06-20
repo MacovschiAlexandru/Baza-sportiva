@@ -21,7 +21,7 @@ public class MessageService {
     public static List<Message> messages;
     private static List <Message> delMessage;
     private static List<Message> afterRemoval = new ArrayList<Message>();
-    private static Path USERS_PATH;
+    public static Path USERS_PATH;
     public static void loadMessagesFromFile(String c) throws IOException {
         USERS_PATH=FileSystemService.getPathToFile("config", c +".json");
         ObjectMapper objectMapper = new ObjectMapper();
@@ -40,16 +40,24 @@ public class MessageService {
 
     public static void deleteMessage(String m, String name) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
+
         delMessage = objectMapper.readValue(USERS_PATH.toFile(),
                 new TypeReference<List<Message>>() {
                 });
+
         for(Message message : delMessage){
             if(Objects.equals(name, message.getInstructor())&& Objects.equals(m,message.getMessage())){
-                continue;
+                {
+                    continue;
+                }
 
             }
             else
-                afterRemoval.add(message);}
+            {
+                afterRemoval.add(message);
+            }}
+        for(Message i:afterRemoval)
+            System.out.println(i.getInstructor()+ " "+i.getMessage());
             FileUtils.copyURLToFile(UserService.class.getClassLoader().getResource("users.json"), USERS_PATH.toFile());
 
             ObjectMapper objMapper = new ObjectMapper();
@@ -58,6 +66,7 @@ public class MessageService {
 
 
         afterRemoval.clear();
+
     }
 
     private static void persistMessages() {
