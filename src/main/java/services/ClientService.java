@@ -21,7 +21,7 @@ public class ClientService {
     public static List<Client> requests;
     private static Path INSTRUCTORREQ_PATH;
 
-    private static void checkUserIsNotEmpty(String username)throws NoUserName {
+    public static void checkUserIsNotEmpty(String username)throws NoUserName {
         if(Objects.equals(username, ""))
             throw new NoUserName(username);
     }
