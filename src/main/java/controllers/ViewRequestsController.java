@@ -49,7 +49,7 @@ public class ViewRequestsController {
         clientTable.setItems(requestList);
     }
 
-    private ObservableList<Client> requestList;
+    public ObservableList<Client> requestList;
     public void setClients() throws IOException {
         InstructorService.loadRequestsFromFile();
         requestList= FXCollections.observableArrayList(InstructorService.requests);
