@@ -56,6 +56,6 @@ public CreateInstructorController insController;
     InstructorService.addClient("Alex", 10, 13);
     controller.setClients();
     int k = controller.clientList.size();
-    assertEquals(k,controller.clientList.size());
+    assertEquals(1,controller.clientList.size());
 }
 }

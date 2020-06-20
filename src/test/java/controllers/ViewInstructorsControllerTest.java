@@ -57,7 +57,7 @@ public class ViewInstructorsControllerTest extends ApplicationTest {
         InstructorService.addInstructor("Maco", 3);
         controller.setInstructors();
         int k = controller.instructorsList.size();
-        assertEquals(k, controller.instructorsList.size());
+        assertEquals(1, controller.instructorsList.size());
 
     }
 }

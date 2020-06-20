@@ -60,6 +60,6 @@ public class ViewMessageControllerTest extends ApplicationTest {
         MessageService.addMessage("Te-am acceptat");
         controller.setMessages();
         int k = controller.messageList.size();
-        assertEquals(k, controller.messageList.size());
+        assertEquals(1, controller.messageList.size());
     }
 }
