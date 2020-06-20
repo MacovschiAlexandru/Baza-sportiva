@@ -39,8 +39,8 @@ public class ViewClientsController {
         clientTable.setItems(clientList);
     }
 
-    private ObservableList<Client> clientList;
-    private void setClients() throws IOException {
+    public ObservableList<Client> clientList;
+    public void setClients() throws IOException {
 
             clientList= FXCollections.observableArrayList(InstructorService.clients);
     }
