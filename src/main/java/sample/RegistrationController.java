@@ -21,11 +21,11 @@ import java.io.IOException;
 public class RegistrationController {
 
     @FXML
-    private Text registrationMessage;
+     public Text registrationMessage;
     @FXML
-    private PasswordField passwordField;
+     public PasswordField passwordField;
     @FXML
-    private TextField usernameField;
+     public TextField usernameField;
     @FXML
     public void handleRegisterAction() {
         try {

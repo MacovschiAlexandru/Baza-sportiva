@@ -38,7 +38,7 @@ public class ViewMessagesController {
         setMessages();
         messageTable.setItems(messageList);
     }
-    private ObservableList<Message> messageList;
+    public ObservableList<Message> messageList;
     public void setMessages() throws IOException {
         MessageService.loadMessagesFromFile(LoginController.getCurrectUsername());
         messageList= FXCollections.observableArrayList(MessageService.messages);

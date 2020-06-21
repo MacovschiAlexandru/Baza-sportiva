@@ -11,7 +11,7 @@
     </padding>
     <Text id="title-text" text="Baza sportiva - register" GridPane.columnIndex="1" GridPane.columnSpan="2" />
 
-    <Label text="Username:" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+    <Label text="User:" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
     <TextField fx:id="usernameField" GridPane.columnIndex="2" GridPane.rowIndex="1" />
 

@@ -43,7 +43,7 @@ public class ViewInstructorsController {
         instructorTable.setItems(instructorsList);
     }
 
-    private ObservableList<Instructor> instructorsList;
+    public ObservableList<Instructor> instructorsList;
     public void setInstructors() throws IOException {
         InstructorService.loadInstructorsFromFile();
         instructorsList= FXCollections.observableArrayList(InstructorService.instructors);

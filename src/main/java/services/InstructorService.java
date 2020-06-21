@@ -28,9 +28,9 @@ public class InstructorService {
     public static List<Instructor> delInstructor;
     private static List<Client> afterRemoval = new ArrayList<Client>();
     private static List<Instructor> afterInstructorRemoval=new ArrayList<Instructor>();
-    private static final Path INSTRUCTORS_PATH = FileSystemService.getPathToFile("config", "instructors.json");
-    private static  Path USERS_PATH = FileSystemService.getPathToFile("config", LoginController.getCurrectUsername()+".json");
-    private static  Path REQUESTS_PATH = FileSystemService.getPathToFile("config", LoginController.getCurrectUsername()+"_requests.json");
+    public static final Path INSTRUCTORS_PATH = FileSystemService.getPathToFile("config", "instructors.json");
+    public static  Path USERS_PATH = FileSystemService.getPathToFile("config", LoginController.getCurrectUsername()+".json");
+    public static  Path REQUESTS_PATH = FileSystemService.getPathToFile("config", LoginController.getCurrectUsername()+"_requests.json");
     public static void loadInstructorsFromFile() throws IOException {
         if (!Files.exists(INSTRUCTORS_PATH)) {
             FileUtils.copyURLToFile(UserService.class.getClassLoader().getResource("users.json"), INSTRUCTORS_PATH.toFile());
@@ -46,6 +46,10 @@ public class InstructorService {
             instructors = objectMapper.readValue(INSTRUCTORS_PATH.toFile(),
                     new TypeReference<List<Instructor>>() {
                     });}
+    }
+    public static List <Instructor> getInstructors()
+    {
+        return instructors;
     }
     public static void addInstructor(String name, int clients)  {
         instructors.add(new Instructor(name,clients));
@@ -92,8 +96,8 @@ public class InstructorService {
                 });
     }
 
-    public static void loadRequestsFromFile() throws IOException {
-        REQUESTS_PATH = FileSystemService.getPathToFile("config", LoginController.getCurrectUsername()+"_requests.json");
+    public static void loadRequestsFromFile(String i) throws IOException {
+        REQUESTS_PATH = FileSystemService.getPathToFile("config", i+"_requests.json");
         ObjectMapper objectMapper = new ObjectMapper();
 
         requests = objectMapper.readValue(REQUESTS_PATH.toFile(),

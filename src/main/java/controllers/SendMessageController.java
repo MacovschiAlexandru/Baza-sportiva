@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import registration.Message;
 import services.MessageService;
 
 import java.io.IOException;
@@ -17,6 +18,6 @@ public class SendMessageController {
     public void handleSendingButton(ActionEvent actionEvent) throws IOException {
         MessageService.loadMessagesFromFile(ViewRequestsController.getClientToSend());
         MessageService.addMessage(messageField.getText());
-        messageField.setText("Message sent");
+        sendingMessage.setText("Message sent");
     }
 }

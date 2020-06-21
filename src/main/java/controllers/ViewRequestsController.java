@@ -49,9 +49,9 @@ public class ViewRequestsController {
         clientTable.setItems(requestList);
     }
 
-    private ObservableList<Client> requestList;
+    public ObservableList<Client> requestList;
     public void setClients() throws IOException {
-        InstructorService.loadRequestsFromFile();
+        InstructorService.loadRequestsFromFile(LoginController.getCurrectUsername());
         requestList= FXCollections.observableArrayList(InstructorService.requests);
     }
 
@@ -85,7 +85,7 @@ public class ViewRequestsController {
 
                                 clientTable.getItems().remove(getTableView().getItems().get(getIndex()));
                                 InstructorService.deleteRequest(client.getClient());
-                                InstructorService.loadRequestsFromFile();
+                                InstructorService.loadRequestsFromFile(LoginController.getCurrectUsername());
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
@@ -136,7 +136,7 @@ public class ViewRequestsController {
                             try {
                                 clientTable.getItems().remove(getTableView().getItems().get(getIndex()));
                                 InstructorService.deleteRequest(client.getClient());
-                                InstructorService.loadRequestsFromFile();
+                                InstructorService.loadRequestsFromFile(LoginController.getCurrectUsername());
 
                                 Parent view2= FXMLLoader.load(getClass().getClassLoader().getResource("send_message.fxml"));
                                 Scene tableScene=new Scene(view2);
