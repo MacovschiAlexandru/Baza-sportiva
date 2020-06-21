@@ -9,7 +9,5 @@ public class UsernameAlreadyExists extends Exception {
         this.username = username;
     }
 
-    public String getUsername() {
-        return username;
-    }
+
 }

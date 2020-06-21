@@ -55,5 +55,12 @@ public class DeleteInstructorControllerTest extends ApplicationTest {
         assertEquals(0, InstructorService.getInstructors().size());
         assertEquals("Instructor has been removed!",controller.deleteMessage.getText());
     }
+    @Test
+    public void testUsernameDoesNotExists() throws IOException {
+        createController.usernameField.setText("ceva");
+        createController.handleCreationButton(new ActionEvent());
+        controller.handleDeleteButton(new ActionEvent());
+        assertEquals("Username not found!",controller.deleteMessage.getText());
+    }
 
 }
