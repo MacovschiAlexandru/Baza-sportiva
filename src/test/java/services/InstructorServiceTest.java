@@ -101,7 +101,7 @@ public class InstructorServiceTest extends ApplicationTest {
     public void testLoadRequestsFromFile() throws IOException {
         controller.handleCreationButton(new ActionEvent());
         LoginController.text=TEST_USER;
-        InstructorService.loadRequestsFromFile();
+        InstructorService.loadRequestsFromFile(TEST_USER);
         assertNotNull(InstructorService.requests);
         assertEquals(0, InstructorService.requests.size());
 
@@ -146,7 +146,7 @@ public class InstructorServiceTest extends ApplicationTest {
     public void testRemoveRequestAfterResponse() throws IOException, InstructorNotFound, NoExitHour, NoEntryHour, UnacceptedEntryHour, UnacceptedExitHour, NoUserName {
         controller.handleCreationButton(new ActionEvent());
         LoginController.text=TEST_USER;
-        InstructorService.loadRequestsFromFile();
+        InstructorService.loadRequestsFromFile(TEST_USER);
         RequestInstructorController.text=TEST_USER;
         ClientService.addRequest("Cristi",12,13);
         InstructorService.deleteRequest("Cristi");

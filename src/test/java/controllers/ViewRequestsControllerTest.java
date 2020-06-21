@@ -53,7 +53,7 @@ public class ViewRequestsControllerTest extends ApplicationTest {
     public void testSetRequests() throws IOException, InstructorNotFound, NoExitHour, NoEntryHour, UnacceptedEntryHour, UnacceptedExitHour, NoUserName {
     insController.handleCreationButton(new ActionEvent());
     LoginController.text = TEST_USERNAME;
-    InstructorService.loadRequestsFromFile();
+    InstructorService.loadRequestsFromFile(TEST_USERNAME);
     RequestInstructorController.text = TEST_USERNAME;
     ClientService.addRequest("Andrei", 10 , 12);
     controller.setClients();

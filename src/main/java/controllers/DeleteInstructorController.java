@@ -10,9 +10,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import registration.Instructor;
 import services.InstructorService;
 import services.UserService;
 
+import java.io.File;
 import java.io.IOException;
 
 
@@ -26,6 +28,12 @@ public class DeleteInstructorController {
         try{
             UserService.loadUsersFromFile();
             UserService.deleteInstructor(usernameField.getText());
+            InstructorService.loadUsersFromFile(usernameField.getText());
+            InstructorService.loadRequestsFromFile(usernameField.getText());
+            File file=new File(String.valueOf(InstructorService.USERS_PATH));
+            file.delete();
+            file=new File(String.valueOf(InstructorService.REQUESTS_PATH));
+            file.delete();
             InstructorService.deleteInstructor(usernameField.getText());
             deleteMessage.setText("Instructor has been removed!");
             InstructorService.loadInstructorsFromFile();

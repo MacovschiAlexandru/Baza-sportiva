@@ -68,10 +68,10 @@ public class ClientServiceTest extends ApplicationTest {
     public void testAddRequests() throws IOException, InstructorNotFound, NoExitHour, NoEntryHour, UnacceptedEntryHour, UnacceptedExitHour, NoUserName {
         iC.handleCreationButton(new ActionEvent());
         LoginController.text = TEST_USER;
-        InstructorService.loadRequestsFromFile();
+        InstructorService.loadRequestsFromFile(TEST_USER);
         RequestInstructorController.text = TEST_USER;
         ClientService.addRequest("Cristi", 12, 13);
-        InstructorService.loadRequestsFromFile();
+        InstructorService.loadRequestsFromFile(TEST_USER);
         assertEquals(1, InstructorService.requests.size());
     }
 
@@ -91,10 +91,10 @@ public class ClientServiceTest extends ApplicationTest {
     public void testValidEnH() throws InstructorNotFound, NoExitHour, NoEntryHour, IOException, UnacceptedExitHour, UnacceptedEntryHour, NoUserName {
         iC.handleCreationButton(new ActionEvent());
         LoginController.text = TEST_USER;
-        InstructorService.loadRequestsFromFile();
+        InstructorService.loadRequestsFromFile(TEST_USER);
         RequestInstructorController.text = TEST_USER;
         ClientService.addRequest("Cristi", 12, 14);
-        InstructorService.loadRequestsFromFile();
+        InstructorService.loadRequestsFromFile(TEST_USER);
         assertEquals(1, InstructorService.requests.size());
     }
 
@@ -102,10 +102,10 @@ public class ClientServiceTest extends ApplicationTest {
     public void testValidExH() throws InstructorNotFound, NoExitHour, NoEntryHour, IOException, UnacceptedExitHour, UnacceptedEntryHour, NoUserName {
         iC.handleCreationButton(new ActionEvent());
         LoginController.text = TEST_USER;
-        InstructorService.loadRequestsFromFile();
+        InstructorService.loadRequestsFromFile(TEST_USER);
         RequestInstructorController.text = TEST_USER;
         ClientService.addRequest("Cristi", 10, 13);
-        InstructorService.loadRequestsFromFile();
+        InstructorService.loadRequestsFromFile(TEST_USER);
         assertEquals(1, InstructorService.requests.size());
     }
 }
